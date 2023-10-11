@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <!-- Latest News Marquee Area End -->
+
+    <!-- Main Content Area Start -->
+    <section class="main-content-wrapper section_padding_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-9">
+                    <!-- Gazette Welcome Post -->
+                    <div class="gazette-welcome-post">
+                        <!-- Post Tag -->
+                        <div class="gazette-post-tag">
+                            <a href="{% url 'category_url' new.category.id %}">{{ new.category }}</a>
+                        </div>
+                        <h2 class="font-pt">{{ new.title }}</h2>
+                        <p class="gazette-post-date">{{ new.date }} </p>
+                        <!-- Post Thumbnail -->
+                        <div class="blog-post-thumbnail my-5">
+                            <a href="{% url 'single_url' new.id %}"><img src="{{ new.img.url }}" alt="post-thumb"></a>
+
+                        </div>
+                        <!-- Post Excerpt -->
+                        <p><a href="{% url 'single_url' new.id %}">{{ new.text }}</a></p>
+                        <!-- Reading More -->
+                        <div class="post-continue-reading-share d-sm-flex align-items-center justify-content-between mt-30">
+                            <div class="post-continue-btn">
+                                <a href="{% url 'single_url' new.id %}" class="font-pt">Continue Reading <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="post-share-btn-group">
+                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gazette-todays-post section_padding_100_50">
+                        <div class="gazette-heading">
+                            <h4>today’s most popular</h4>
+                        </div>
+                        <!-- Single Today Post -->
+                        {% for i in news %}
+                        <div class="gazette-single-todays-post d-md-flex align-items-start mb-50">
+                            <div class="todays-post-thumb">
+                                <a href="{% url 'single_url' i.id %}"><img src="{{ i.img.url }}" alt="post-thumb"></a>
+                            </div>
+                            <div class="todays-post-content">
+                                <!-- Post Tag -->
+                                <div class="gazette-post-tag">
+                                    <a href="{% url 'category_url' i.category.id %}">{{ i.category }}</a>
+                                </div>
+                                <h3><a href="{% url 'single_url' i.id %}" class="font-pt mb-2">{{ i.title }}</a></h3>
+                                <span class="gazette-post-date mb-2">{{ i.date }}</span>
+                                <a href="#" class="post-total-comments">3 Comments</a>
+                                <p>{{ i.text }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-3 col-md-6">
+                    <div class="sidebar-area">
+                        <!-- Breaking News Widget -->
+                        <div class="breaking-news-widget">
+                            <div class="widget-title">
+                                <h5>breaking news</h5>
+                            </div>
+                            <!-- Single Breaking News Widget -->
+                            {% for i in news_b %}
+                            <div class="single-breaking-news-widget">
+                                <a href="{% url 'single_url' i.id %}"><img src="{{ i.img.url }}" alt="post-thumb"></a>
+                                <div class="breakingnews-title">
+                                    <a href="{% url 'category_url' i.category.id %}"><p>{{ i.category }}</p></a>
+                                </div>
+                                <div class="breaking-news-heading gradient-background-overlay">
+                                    <h5 class="font-pt">{{ i.title }}</h5>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- Single Breaking News Widget -->
+                        </div>
+
+                        <!-- Don't Miss Widget -->
+                        <div class="donnot-miss-widget">
+                            <div class="widget-title">
+                                <h5>Don't miss</h5>
+                            </div>
+                            <!-- Single Don't Miss Post -->
+                            {% for i in d_miss %}
+                            <div class="single-dont-miss-post d-flex mb-30">
+                                <div class="dont-miss-post-thumb">
+                                    <a href="{% url 'single_url' i.id %}"><img src="{{ i.img.url }}" alt="post-thumb"></a>
+                                </div>
+                                <div class="dont-miss-post-content">
+                                    <a href="{% url 'single_url' i.id %}" class="font-pt">{{ i.title }}</a>
+                                    <span>{{ i.date }}</span>
+                                </div>
+                            </div>
+                            <!-- Single Don't Miss Post -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Area End -->
+
+{% endblock %}

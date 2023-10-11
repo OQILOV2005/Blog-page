@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="gazette-contact-area section_padding_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-8">
+                    <div class="gazette-heading">
+                        <h4 class="font-bold">Create new Blog</h4>
+                    </div>
+                    <!-- Contact Form -->
+                    <form action="{% url 'update_blog_url' new.pk %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name = "title" value="{{ new.title }}" placeholder="Enter Your Blog title">
+                        </div>
+                        <div class="form-group">
+                            <select name="category" id="">
+                                {% for i in category %}
+                                <option value="{{ i.id }}">{{ i.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control" name ="img">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" value="{{ new.date }}" class="form-control" name ="date">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name = "text" value="{{ new.text }}" placeholder="Enter Your Blog text">
+                        </div>
+                        <button type="submit" class="btn contact-btn">SUBMIT<i class="fa fa-angle-right ml-2"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
